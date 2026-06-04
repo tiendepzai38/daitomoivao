@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucky Clicker</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#00ff88,#0099ff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.box{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    width:400px;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+h1{
+    margin-bottom:20px;
+}
+
+#lucky{
+    font-size:40px;
+    font-weight:bold;
+    color:#00aa55;
+    margin-bottom:15px;
+}
+
+button{
+    padding:15px 35px;
+    font-size:22px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    background:#0099ff;
+    color:white;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.bar{
+    width:100%;
+    height:25px;
+    background:#ddd;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:20px;
+}
+
+.fill{
+    width:0%;
+    height:100%;
+    background:limegreen;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+    <h1>🍀 Lucky Clicker 🍀</h1>
+
+    <div id="lucky">0 / 100000</div>
+
+    <button onclick="addLucky()">CLICK +10 LUCKY</button>
+
+    <div class="bar">
+        <div class="fill" id="fill"></div>
+    </div>
+</div>
+
+<script>
+let lucky = 0;
+const maxLucky = 100000;
+
+function addLucky(){
+    if(lucky >= maxLucky) return;
+
+    lucky += 10;
+
+    if(lucky > maxLucky){
+        lucky = maxLucky;
+    }
+
+    document.getElementById("lucky").innerText =
+        lucky.toLocaleString() + " / " + maxLucky.toLocaleString();
+
+    let percent = (lucky / maxLucky) * 100;
+    document.getElementById("fill").style.width = percent + "%";
+}
+</script>
+
+</body>
+</html>
